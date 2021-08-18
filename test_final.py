@@ -29,6 +29,8 @@ EXPECTED_FUNCTIONS2 = [
 EXPECTED_FUNCTIONS3 = [
     "continent_medals"
 ]
+TEST_FILE = "test.csv"
+OLYMPICS = 'olympics.csv'
 
 
 def run_imgd(expected, actual):
@@ -37,8 +39,8 @@ def run_imgd(expected, actual):
     Produces diff image only if both student and expected output exist.
     """
     if not os.path.exists(actual):
-        print(f"Could not find the file: {actual} after running final_163.py \
-              \n")
+        print(f"Could not find the file: {actual} after running \
+              final_163.py\n")
     elif not os.path.exists(expected):
         print(f"Could not find the file: {expected}\n")
     else:
@@ -55,6 +57,15 @@ def run_imgd(expected, actual):
             print('There is no difference')
         else:
             print('There is difference', err)
+
+
+def test_best_athlete(test_df, olympics):
+    """
+    Test the correctness of Q4, the athlete who got most medals.
+    """
+    result = final_163.most_medal_athlete(olympics).reset_index(drop=True)
+    if not test_df.equals(result):
+        print('not equal')
 
 
 def main():
@@ -85,6 +96,10 @@ def main():
     print()
     for plot_name in PLOTS:
         run_imgd(f"expected/{plot_name}", plot_name)
+    # Test Q4
+    test_df = pd.read_csv(TEST_FILE)  # dataframe
+    olympics = pd.read_csv(OLYMPICS)  # dataframe
+    test_best_athlete(test_df, olympics)
 
 
 if __name__ == "__main__":
