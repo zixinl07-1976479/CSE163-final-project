@@ -1,4 +1,6 @@
 """
+Claire Li, CSE 163 AA
+Yuhao Zhuang, CSE 163 AC
 Runs MSE with actual output against expected output to see if
 there is any difference
 """
