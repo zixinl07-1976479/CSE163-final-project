@@ -1,3 +1,11 @@
+"""
+Claire Li, CSE 163 AA
+Yuhao Zhuang, CSE 163 AC
+This program implements the functions for our final proejct,
+The Tops of of the Olympics, to solve for the seven questions, including
+finding the top teams and top athlete, showing the number of change,
+and showing the distribution in plots.
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -90,7 +98,7 @@ def events(olympics):
     plt.savefig('events_change.png')
 
 
-def most_medal_athlate(olympics):
+def most_medal_athlete(olympics):
     """
     Takes in the Olympic data and finds the athlete who got most medals.
     """
@@ -101,7 +109,7 @@ def most_medal_athlate(olympics):
     most_medal_athlete = events.sort_values('Medal', ascending=False).head(1)
     name = most_medal_athlete['Name'].values[0]
     result = olympics[olympics['Name'] == name]
-    # print(result)
+    print(result)
     return result
 
 
@@ -211,7 +219,7 @@ def main():
     top_10_teams_golds(olympics)
     top_5_summer_gold(olympics)
     events(olympics)
-    most_medal_athlate(olympics)
+    most_medal_athlete(olympics)
     us_medals_by_sports(olympics, sport)
     su_athletes_age_sex(olympics)
     continent_medals(olympics, continents)
